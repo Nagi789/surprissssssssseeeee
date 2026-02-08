@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Be My Valentine? 💘</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ffd6e8, #ffeef6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 20px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #ff4d88;
+      margin-bottom: 1.5rem;
+    }
+
+    .buttons {
+      position: relative;
+      height: 120px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    #yesBtn {
+      background: #ff4d88;
+      color: white;
+      margin-right: 10px;
+    }
+
+    #yesBtn:hover {
+      transform: scale(1.05);
+    }
+
+    #noBtn {
+      background: #ddd;
+      color: #555;
+      position: absolute;
+      left: 50%;
+      top: 60px;
+      transform: translateX(-50%);
+      transition: left 0.3s ease, top 0.3s ease;
+    }
+
+    .success {
+      display: none;
+      color: #ff4d88;
+      font-size: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Will you be my Valentine? 💕</h1>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes 💖</button>
+      <button id="noBtn">No 🙃</button>
+    </div>
+
+    <div class="success" id="successMsg">
+      Yay!! 💘 See you on Valentine’s Day! 🥰
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const successMsg = document.getElementById("successMsg");
+
+    noBtn.addEventListener("mouseenter", moveButton);
+
+    function moveButton() {
+      const buttonRect = noBtn.getBoundingClientRect();
+      const padding = 20;
+
+      const maxX = window.innerWidth - buttonRect.width - padding;
+      const maxY = window.innerHeight - buttonRect.height - padding;
+
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+
+      noBtn.style.left = `${randomX}px`;
+      noBtn.style.top = `${randomY}px`;
+    }
+
+    yesBtn.addEventListener("click", () => {
+      successMsg.style.display = "block";
+      noBtn.style.display = "none";
+      yesBtn.style.display = "none";
+    });
+  </script>
+
+</body>
+</html>
